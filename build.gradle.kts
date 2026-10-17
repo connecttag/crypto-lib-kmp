@@ -43,8 +43,16 @@ kotlin {
         }
     }
 
+    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
+    wasmJs { browser() }
+
     sourceSets {
+        commonMain.dependencies {
+            implementation("dev.whyoleg.cryptography:cryptography-core:0.6.0")
+            implementation("dev.whyoleg.cryptography:cryptography-provider-optimal:0.6.0")
+        }
         commonTest.dependencies {
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0")
             implementation(libs.kotlin.test)
         }
     }
